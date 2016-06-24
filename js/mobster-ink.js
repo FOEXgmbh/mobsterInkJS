@@ -466,7 +466,7 @@
 
 		// Creates the array for the points where the bullet holes should be placed based on the text passed to the fire() function
 		function createPointsArray() {
-			var arr = []
+			var arr = [],
 				sup = /[-A-Z0-9?!.,_+*/=@#:'~\\\"~()<>|[\]&^%$]/;
 			for(var i = 0; i < text.length; i++) {
 				var letterObj,
