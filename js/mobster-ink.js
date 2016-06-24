@@ -430,6 +430,10 @@
 			useSpacingSilence: function(b) {
 				spacingSilenceUsed = b;
 				return this;
+			},
+
+			isMuted: function() {
+				return muted;
 			}
 		};
 
