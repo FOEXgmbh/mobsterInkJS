@@ -2,14 +2,14 @@
 Writes out a string using bulletholes
 
 ## Usage
-1. Include the css and the js files in your html document (jquery and soundjs are required)
+- Include the css and the js files in your html document (jquery and soundjs are required)
 ```
 <link rel="stylesheet" type="text/css" href="css/mobster-ink.css">
 <script src="js/jquery-3.0.0.min.js" type="text/javascript"></script>
 <script src="js/soundjs-0.6.2.min.js" type="text/javascript"></script>
 <script src="js/mobster-ink.js" type="text/javascript"></script>
 ```
-2. You can use the machineGun object sitting on the window
+- You can use the machineGun object sitting on the window
 ```
 window.machineGun.fire("FOEX", "bullet-container");
 ```
@@ -17,6 +17,7 @@ window.machineGun.fire("FOEX", "bullet-container");
 ## Methods
 #### fire(text, containerID)
 *string text - the string to be printed out (default: "")*
+
 *string containerID - the container that should hold the bullets (default: body || previously_passed_containerID)*
 
 Prints out the passed string to the specified container.
