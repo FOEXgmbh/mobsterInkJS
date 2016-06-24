@@ -1,0 +1,10 @@
+body.after {
+	content: url("img/bullet_hole.gif");
+	display: none;
+}
+.bullet {
+	background: url("img/bullet_hole.gif") left top no-repeat;
+	position: absolute;
+	background-size: cover;
+	display: none;
+}

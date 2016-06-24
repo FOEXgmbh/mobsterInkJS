@@ -1,0 +1,138 @@
+<html>
+
+<head>
+<title>Letter Generator</title>
+<style>
+	body {
+		font-family: sans-serif;
+		font-size: 20px;
+	}
+	#grid {
+		position: relative;
+		width: 400px;
+		height: 400px;
+		border: 1px solid gray;
+	}
+	#result, #width {
+		margin-top: 30px;
+		padding: 20px;
+		border: 1px solid black;
+		background: #DDD;
+	}
+	.slot {
+		position: absolute;
+		border: 1px solid gray;
+		width: 40px;
+		height: 40px;
+	}
+	.slot p {
+		line-height: 40px;
+		text-align: center;
+		margin: 0;
+		font-size: 10px;
+	}
+	#reset-btn {
+		margin-top: 20px;
+	}
+</style>
+</head>
+
+<body>
+	<div id="grid">	
+	</div>
+
+	<div id="result">
+	</div>
+
+	<div id="width"></div>
+
+	<div>
+		<button id="reset-btn">Reset</button>
+	</div>
+
+	<script src="js/jquery-3.0.0.min.js" type="text/javascript"></script>
+	<script>
+	(function() {
+		var rows = 10,
+			columns = 10,
+			appendString = "",
+			result = [];
+			$result = $("#result"),
+			$width = $("#width");
+		for(var i=0; i<columns; i++) {
+			for(var j=0; j<rows; j++) {
+				appendString += '<div class="slot" data-selected="0" data-x="' + i + '" data-y="' + j + '"><p></p></div>'
+			}
+		}
+		$("#grid").append(appendString);
+		$(".slot").each(function(index, item) {
+			var $i = $(item);
+			$i.css({
+				"top": $i.height() * $i.data("y"),
+				"left": $i.width() * $i.data("x")
+			});
+			$i.find("p").text($i.data("x") + "," + $i.data("y"));
+			$i.on("click", clickListener);
+		});
+
+		$("#reset-btn").on("click", function() {
+			result = [];
+			var $slots = $(".slot");
+			$slots.css("background-color", "transparent");
+			$slots.attr("data-selected", 0);
+			$slots.each(function(index, item) {
+				var $i = $(item);
+				$i.find("p").text($i.data("x") + "," + $i.data("y"));
+			});
+			$result.text(printReadable());
+			$width.text(printWidth);
+		});
+		$width.text(0);
+
+		function clickListener() {
+			var $t = $(this);
+			if($t.attr("data-selected") == 0) {
+				result.push([$t.data("x"), $t.data("y")]);
+				
+				$t.attr("data-selected", 1);
+				$t.css("background-color", "lightblue");
+				$t.find("p").text(result.length);
+				$result.text(printReadable());
+				$width.text(printWidth);
+			}	
+		}
+
+		function printReadable() {
+			var r = "[";
+			for(var i=0; i<result.length; i++) {
+				r += "[";
+				r += result[i][0];
+				r += ",";
+				r += result[i][1];
+				r += "]";
+				if(i<result.length-1)
+					r += ",";
+			}
+			r += "]";
+			return r;
+		}
+
+		function printWidth() {
+			var max = 0;
+			var $slots = $(".slot");
+			$slots.each(function(index, item) {
+				var $i = $(item);
+				if($i.attr("data-selected") == 1) {
+					max = Math.max(max, $i.data("x") + 1);
+				}	
+			});
+			return max;
+		}
+
+		$result.text(printReadable());
+	})();
+	</script>
+	
+</body>
+
+</html>
