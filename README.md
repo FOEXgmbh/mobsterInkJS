@@ -16,8 +16,8 @@ window.machineGun.fire("FOEX", "bullet-container");
 
 ## Methods
 #### fire(text, containerID)
-*string text - the string to be printed out (default: "")
-string containerID - the container that should hold the bullets (default: body || previously_passed_containerID)*
+*string text - the string to be printed out (default: "")*
+*string containerID - the container that should hold the bullets (default: body || previously_passed_containerID)*
 
 Prints out the passed string to the specified container.
 
