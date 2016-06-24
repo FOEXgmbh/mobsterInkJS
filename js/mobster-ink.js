@@ -466,12 +466,13 @@
 
 		// Creates the array for the points where the bullet holes should be placed based on the text passed to the fire() function
 		function createPointsArray() {
-			var arr = [];
+			var arr = []
+				sup = /[-A-Z0-9?!.,_+*/=@#:'~\\\"~()<>|[\]&^%$]/;
 			for(var i = 0; i < text.length; i++) {
 				var letterObj,
 					letterPoints;
 				// Test whether we can draw it, supported chars
-				if(/[-A-Z0-9?!.,_+*/=@#:'~\\\"~()<>|[\]&^%$]/.test(text[i])) {
+				if(sup.test(text[i])) {
 					letterObj = letterMatrix[text[i]];
 					// Add the index to the special array to so we can check when a new letter is reached
 					positionsOfChars.push(arr.length);
